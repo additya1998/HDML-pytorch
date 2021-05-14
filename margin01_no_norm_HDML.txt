@@ -1,0 +1,1806 @@
+GPU configuration: cuda [0]
+==> Options: Namespace(alpha=7, apply_HDML=True, batch_per_epoch=500, batch_size=40, beta=10000.0, device=device(type='cuda'), embedding_reg=0.003, embedding_size=128, experiment='logs/margin01_no_norm_HDML/13_05_2021__13_45_22', image_size=227, learning_rate=7e-05, lmbda=0.5, lr_generator=0.01, lr_softmax=0.001, max_steps=100000, normalize=True, num_workers=15, print_frq=100, softmax_factor=10000.0, test_batch_size=128, weight_decay=0.005)
+Using GPU: True
+Cars 196 train: Images: 8054, Classes: 98
+Cars 196 test: Images: 8131, Classes: 98
+Loaded model: googlenet-1378be20.pth
+>>>>> Training: 0
+J_m: 444.356, J_synth: 6.477, J_metric: 450.833, J_g: 16016.665, J_soft: 10393.565, J_recon: 5623.100, J_ce: 2.791, J_wd: nan
+>>>>> Testing: 0
+Recall@1: 0.35
+Recall@2: 0.47
+Recall@4: 0.6
+Recall@8: 0.72
+Recall@16: 0.83
+Recall@32: 0.92
+>>>>> Training: 1
+J_m: 86.521, J_synth: 110.968, J_metric: 197.489, J_g: 8651.512, J_soft: 5222.302, J_recon: 3429.210, J_ce: 1.422, J_wd: nan
+>>>>> Testing: 1
+Recall@1: 0.4
+Recall@2: 0.52
+Recall@4: 0.65
+Recall@8: 0.77
+Recall@16: 0.87
+Recall@32: 0.93
+>>>>> Training: 2
+J_m: 32.614, J_synth: 104.426, J_metric: 137.039, J_g: 6836.051, J_soft: 3637.458, J_recon: 3198.592, J_ce: 1.005, J_wd: nan
+>>>>> Testing: 2
+Recall@1: 0.42
+Recall@2: 0.55
+Recall@4: 0.67
+Recall@8: 0.78
+Recall@16: 0.88
+Recall@32: 0.94
+>>>>> Training: 3
+J_m: 17.842, J_synth: 95.328, J_metric: 113.170, J_g: 5977.885, J_soft: 2910.560, J_recon: 3067.325, J_ce: 0.796, J_wd: nan
+>>>>> Testing: 3
+Recall@1: 0.42
+Recall@2: 0.55
+Recall@4: 0.67
+Recall@8: 0.79
+Recall@16: 0.88
+Recall@32: 0.95
+>>>>> Training: 4
+J_m: 11.407, J_synth: 90.779, J_metric: 102.186, J_g: 5526.663, J_soft: 2535.258, J_recon: 2991.404, J_ce: 0.651, J_wd: nan
+>>>>> Testing: 4
+Recall@1: 0.42
+Recall@2: 0.55
+Recall@4: 0.68
+Recall@8: 0.8
+Recall@16: 0.89
+Recall@32: 0.95
+>>>>> Training: 5
+J_m: 9.263, J_synth: 106.124, J_metric: 115.387, J_g: 5559.501, J_soft: 2544.704, J_recon: 3014.797, J_ce: 0.544, J_wd: nan
+>>>>> Testing: 5
+Recall@1: 0.43
+Recall@2: 0.56
+Recall@4: 0.69
+Recall@8: 0.8
+Recall@16: 0.89
+Recall@32: 0.95
+>>>>> Training: 6
+J_m: 8.412, J_synth: 112.490, J_metric: 120.902, J_g: 5708.375, J_soft: 2660.070, J_recon: 3048.305, J_ce: 0.468, J_wd: nan
+>>>>> Testing: 6
+Recall@1: 0.44
+Recall@2: 0.57
+Recall@4: 0.7
+Recall@8: 0.8
+Recall@16: 0.89
+Recall@32: 0.95
+>>>>> Training: 7
+J_m: 7.922, J_synth: 119.476, J_metric: 127.398, J_g: 5902.891, J_soft: 2826.191, J_recon: 3076.700, J_ce: 0.413, J_wd: nan
+>>>>> Testing: 7
+Recall@1: 0.43
+Recall@2: 0.57
+Recall@4: 0.7
+Recall@8: 0.81
+Recall@16: 0.89
+Recall@32: 0.95
+>>>>> Training: 8
+J_m: 7.774, J_synth: 110.682, J_metric: 118.455, J_g: 6218.571, J_soft: 3102.745, J_recon: 3115.826, J_ce: 0.381, J_wd: nan
+>>>>> Testing: 8
+Recall@1: 0.45
+Recall@2: 0.58
+Recall@4: 0.71
+Recall@8: 0.82
+Recall@16: 0.9
+Recall@32: 0.95
+>>>>> Training: 9
+J_m: 7.603, J_synth: 103.482, J_metric: 111.085, J_g: 6668.006, J_soft: 3531.871, J_recon: 3136.134, J_ce: 0.360, J_wd: nan
+>>>>> Testing: 9
+Recall@1: 0.44
+Recall@2: 0.58
+Recall@4: 0.71
+Recall@8: 0.81
+Recall@16: 0.89
+Recall@32: 0.95
+>>>>> Training: 10
+J_m: 9.192, J_synth: 102.366, J_metric: 111.558, J_g: 7061.294, J_soft: 3981.169, J_recon: 3080.125, J_ce: 0.352, J_wd: nan
+>>>>> Testing: 10
+Recall@1: 0.44
+Recall@2: 0.58
+Recall@4: 0.7
+Recall@8: 0.81
+Recall@16: 0.9
+Recall@32: 0.95
+>>>>> Training: 11
+J_m: 8.951, J_synth: 83.366, J_metric: 92.317, J_g: 6780.875, J_soft: 3840.348, J_recon: 2940.527, J_ce: 0.333, J_wd: nan
+>>>>> Testing: 11
+Recall@1: 0.47
+Recall@2: 0.6
+Recall@4: 0.73
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 12
+J_m: 5.647, J_synth: 60.559, J_metric: 66.206, J_g: 5400.600, J_soft: 2760.985, J_recon: 2639.615, J_ce: 0.289, J_wd: nan
+>>>>> Testing: 12
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 13
+J_m: 3.177, J_synth: 100.727, J_metric: 103.904, J_g: 5691.170, J_soft: 3026.315, J_recon: 2664.855, J_ce: 0.250, J_wd: nan
+>>>>> Testing: 13
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 14
+J_m: 3.910, J_synth: 288.962, J_metric: 292.872, J_g: 6587.502, J_soft: 3869.752, J_recon: 2717.750, J_ce: 0.222, J_wd: nan
+>>>>> Testing: 14
+Recall@1: 0.46
+Recall@2: 0.59
+Recall@4: 0.72
+Recall@8: 0.82
+Recall@16: 0.9
+Recall@32: 0.95
+>>>>> Training: 15
+J_m: 4.327, J_synth: 210.540, J_metric: 214.867, J_g: 6573.830, J_soft: 3808.948, J_recon: 2764.881, J_ce: 0.207, J_wd: nan
+>>>>> Testing: 15
+Recall@1: 0.47
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 16
+J_m: 3.875, J_synth: 147.084, J_metric: 150.960, J_g: 6086.984, J_soft: 3394.079, J_recon: 2692.906, J_ce: 0.189, J_wd: nan
+>>>>> Testing: 16
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.74
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 17
+J_m: 3.261, J_synth: 170.955, J_metric: 174.215, J_g: 6318.129, J_soft: 3588.058, J_recon: 2730.071, J_ce: 0.173, J_wd: nan
+>>>>> Testing: 17
+Recall@1: 0.47
+Recall@2: 0.61
+Recall@4: 0.72
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 18
+J_m: 3.207, J_synth: 234.781, J_metric: 237.988, J_g: 6620.399, J_soft: 3917.882, J_recon: 2702.517, J_ce: 0.165, J_wd: nan
+>>>>> Testing: 18
+Recall@1: 0.47
+Recall@2: 0.6
+Recall@4: 0.73
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 19
+J_m: 3.297, J_synth: 223.946, J_metric: 227.243, J_g: 6789.583, J_soft: 4018.433, J_recon: 2771.150, J_ce: 0.153, J_wd: nan
+>>>>> Testing: 19
+Recall@1: 0.47
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 20
+J_m: 3.054, J_synth: 216.978, J_metric: 220.032, J_g: 7088.153, J_soft: 4265.456, J_recon: 2822.698, J_ce: 0.147, J_wd: nan
+>>>>> Testing: 20
+Recall@1: 0.47
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 21
+J_m: 3.320, J_synth: 221.611, J_metric: 224.930, J_g: 6961.153, J_soft: 4190.909, J_recon: 2770.245, J_ce: 0.138, J_wd: nan
+>>>>> Testing: 21
+Recall@1: 0.48
+Recall@2: 0.62
+Recall@4: 0.74
+Recall@8: 0.83
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 22
+J_m: 2.916, J_synth: 180.605, J_metric: 183.521, J_g: 6906.860, J_soft: 4127.637, J_recon: 2779.223, J_ce: 0.130, J_wd: nan
+>>>>> Testing: 22
+Recall@1: 0.48
+Recall@2: 0.62
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 23
+J_m: 2.287, J_synth: 201.431, J_metric: 203.719, J_g: 7124.479, J_soft: 4391.855, J_recon: 2732.624, J_ce: 0.124, J_wd: nan
+>>>>> Testing: 23
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.74
+Recall@8: 0.83
+Recall@16: 0.9
+Recall@32: 0.95
+>>>>> Training: 24
+J_m: 2.642, J_synth: 254.582, J_metric: 257.225, J_g: 7313.515, J_soft: 4592.143, J_recon: 2721.372, J_ce: 0.118, J_wd: nan
+>>>>> Testing: 24
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 25
+J_m: 2.582, J_synth: 223.506, J_metric: 226.088, J_g: 7283.263, J_soft: 4529.361, J_recon: 2753.902, J_ce: 0.108, J_wd: nan
+>>>>> Testing: 25
+Recall@1: 0.48
+Recall@2: 0.61
+Recall@4: 0.73
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.95
+>>>>> Training: 26
+J_m: 2.441, J_synth: 219.816, J_metric: 222.257, J_g: 7298.421, J_soft: 4559.265, J_recon: 2739.156, J_ce: 0.103, J_wd: nan
+>>>>> Testing: 26
+Recall@1: 0.47
+Recall@2: 0.61
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 27
+J_m: 2.300, J_synth: 211.034, J_metric: 213.334, J_g: 7522.622, J_soft: 4830.279, J_recon: 2692.343, J_ce: 0.102, J_wd: nan
+>>>>> Testing: 27
+Recall@1: 0.49
+Recall@2: 0.62
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 28
+J_m: 2.150, J_synth: 206.042, J_metric: 208.193, J_g: 7740.540, J_soft: 5006.531, J_recon: 2734.009, J_ce: 0.100, J_wd: nan
+>>>>> Testing: 28
+Recall@1: 0.49
+Recall@2: 0.63
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 29
+J_m: 2.573, J_synth: 205.293, J_metric: 207.866, J_g: 8136.812, J_soft: 5371.401, J_recon: 2765.411, J_ce: 0.097, J_wd: nan
+>>>>> Testing: 29
+Recall@1: 0.48
+Recall@2: 0.62
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 30
+J_m: 2.377, J_synth: 156.224, J_metric: 158.601, J_g: 7530.168, J_soft: 4839.835, J_recon: 2690.333, J_ce: 0.095, J_wd: nan
+>>>>> Testing: 30
+Recall@1: 0.49
+Recall@2: 0.62
+Recall@4: 0.74
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 31
+J_m: 2.277, J_synth: 170.084, J_metric: 172.361, J_g: 7776.742, J_soft: 5094.640, J_recon: 2682.102, J_ce: 0.087, J_wd: nan
+>>>>> Testing: 31
+Recall@1: 0.48
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 32
+J_m: 2.131, J_synth: 153.216, J_metric: 155.347, J_g: 7808.867, J_soft: 5128.079, J_recon: 2680.789, J_ce: 0.087, J_wd: nan
+>>>>> Testing: 32
+Recall@1: 0.49
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.84
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 33
+J_m: 1.680, J_synth: 159.104, J_metric: 160.783, J_g: 7739.143, J_soft: 5111.415, J_recon: 2627.727, J_ce: 0.084, J_wd: nan
+>>>>> Testing: 33
+Recall@1: 0.49
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 34
+J_m: 1.865, J_synth: 165.009, J_metric: 166.873, J_g: 8394.413, J_soft: 5696.494, J_recon: 2697.919, J_ce: 0.082, J_wd: nan
+>>>>> Testing: 34
+Recall@1: 0.49
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 35
+J_m: 2.056, J_synth: 138.081, J_metric: 140.137, J_g: 7982.066, J_soft: 5350.925, J_recon: 2631.141, J_ce: 0.079, J_wd: nan
+>>>>> Testing: 35
+Recall@1: 0.5
+Recall@2: 0.63
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 36
+J_m: 1.689, J_synth: 115.677, J_metric: 117.366, J_g: 8196.112, J_soft: 5537.152, J_recon: 2658.960, J_ce: 0.075, J_wd: nan
+>>>>> Testing: 36
+Recall@1: 0.5
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.91
+Recall@32: 0.96
+>>>>> Training: 37
+J_m: 1.510, J_synth: 130.213, J_metric: 131.723, J_g: 8116.921, J_soft: 5516.492, J_recon: 2600.428, J_ce: 0.074, J_wd: nan
+>>>>> Testing: 37
+Recall@1: 0.5
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 38
+J_m: 1.564, J_synth: 126.652, J_metric: 128.216, J_g: 8918.160, J_soft: 6182.035, J_recon: 2736.125, J_ce: 0.072, J_wd: nan
+>>>>> Testing: 38
+Recall@1: 0.5
+Recall@2: 0.63
+Recall@4: 0.75
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 39
+J_m: 1.879, J_synth: 112.412, J_metric: 114.291, J_g: 8620.177, J_soft: 5966.822, J_recon: 2653.354, J_ce: 0.071, J_wd: nan
+>>>>> Testing: 39
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.76
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 40
+J_m: 1.658, J_synth: 97.255, J_metric: 98.913, J_g: 8075.577, J_soft: 5530.303, J_recon: 2545.274, J_ce: 0.068, J_wd: nan
+>>>>> Testing: 40
+Recall@1: 0.5
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 41
+J_m: 1.339, J_synth: 99.994, J_metric: 101.333, J_g: 8415.107, J_soft: 5786.028, J_recon: 2629.078, J_ce: 0.065, J_wd: nan
+>>>>> Testing: 41
+Recall@1: 0.51
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 42
+J_m: 1.322, J_synth: 94.212, J_metric: 95.534, J_g: 8664.387, J_soft: 6029.211, J_recon: 2635.176, J_ce: 0.067, J_wd: nan
+>>>>> Testing: 42
+Recall@1: 0.5
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 43
+J_m: 1.508, J_synth: 92.616, J_metric: 94.124, J_g: 9216.377, J_soft: 6482.715, J_recon: 2733.662, J_ce: 0.066, J_wd: nan
+>>>>> Testing: 43
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 44
+J_m: 1.624, J_synth: 82.029, J_metric: 83.653, J_g: 8827.703, J_soft: 6228.178, J_recon: 2599.526, J_ce: 0.066, J_wd: nan
+>>>>> Testing: 44
+Recall@1: 0.5
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 45
+J_m: 1.256, J_synth: 73.531, J_metric: 74.787, J_g: 8285.519, J_soft: 5775.125, J_recon: 2510.394, J_ce: 0.065, J_wd: nan
+>>>>> Testing: 45
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 46
+J_m: 1.121, J_synth: 80.670, J_metric: 81.791, J_g: 8807.281, J_soft: 6242.344, J_recon: 2564.938, J_ce: 0.061, J_wd: nan
+>>>>> Testing: 46
+Recall@1: 0.5
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 47
+J_m: 1.253, J_synth: 72.770, J_metric: 74.023, J_g: 9275.947, J_soft: 6630.747, J_recon: 2645.200, J_ce: 0.063, J_wd: nan
+>>>>> Testing: 47
+Recall@1: 0.51
+Recall@2: 0.64
+Recall@4: 0.76
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 48
+J_m: 1.162, J_synth: 63.426, J_metric: 64.588, J_g: 8549.462, J_soft: 6056.048, J_recon: 2493.414, J_ce: 0.060, J_wd: nan
+>>>>> Testing: 48
+Recall@1: 0.51
+Recall@2: 0.64
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 49
+J_m: 1.018, J_synth: 64.147, J_metric: 65.164, J_g: 9434.542, J_soft: 6800.159, J_recon: 2634.383, J_ce: 0.060, J_wd: nan
+>>>>> Testing: 49
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.76
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 50
+J_m: 1.402, J_synth: 55.708, J_metric: 57.110, J_g: 9278.526, J_soft: 6681.178, J_recon: 2597.348, J_ce: 0.058, J_wd: nan
+>>>>> Testing: 50
+Recall@1: 0.52
+Recall@2: 0.65
+Recall@4: 0.76
+Recall@8: 0.85
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 51
+J_m: 1.403, J_synth: 50.367, J_metric: 51.770, J_g: 9024.903, J_soft: 6460.416, J_recon: 2564.487, J_ce: 0.058, J_wd: nan
+>>>>> Testing: 51
+Recall@1: 0.52
+Recall@2: 0.65
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 52
+J_m: 1.160, J_synth: 50.352, J_metric: 51.511, J_g: 9176.155, J_soft: 6650.189, J_recon: 2525.966, J_ce: 0.059, J_wd: nan
+>>>>> Testing: 52
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.76
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 53
+J_m: 1.099, J_synth: 49.190, J_metric: 50.289, J_g: 9138.995, J_soft: 6609.672, J_recon: 2529.323, J_ce: 0.057, J_wd: nan
+>>>>> Testing: 53
+Recall@1: 0.52
+Recall@2: 0.66
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 54
+J_m: 0.997, J_synth: 44.239, J_metric: 45.236, J_g: 8888.170, J_soft: 6444.112, J_recon: 2444.058, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 54
+Recall@1: 0.51
+Recall@2: 0.65
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.93
+Recall@32: 0.96
+>>>>> Training: 55
+J_m: 1.164, J_synth: 42.637, J_metric: 43.801, J_g: 9253.224, J_soft: 6764.189, J_recon: 2489.035, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 55
+Recall@1: 0.52
+Recall@2: 0.66
+Recall@4: 0.78
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 56
+J_m: 1.158, J_synth: 36.517, J_metric: 37.675, J_g: 9663.446, J_soft: 7079.902, J_recon: 2583.544, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 56
+Recall@1: 0.52
+Recall@2: 0.65
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 57
+J_m: 0.901, J_synth: 34.257, J_metric: 35.158, J_g: 8907.389, J_soft: 6424.968, J_recon: 2482.420, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 57
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 58
+J_m: 0.952, J_synth: 35.034, J_metric: 35.986, J_g: 9097.022, J_soft: 6614.463, J_recon: 2482.559, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 58
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.92
+Recall@32: 0.96
+>>>>> Training: 59
+J_m: 0.871, J_synth: 35.245, J_metric: 36.116, J_g: 9634.741, J_soft: 7097.672, J_recon: 2537.069, J_ce: 0.057, J_wd: nan
+>>>>> Testing: 59
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.96
+>>>>> Training: 60
+J_m: 0.842, J_synth: 29.521, J_metric: 30.362, J_g: 9273.275, J_soft: 6768.951, J_recon: 2504.324, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 60
+Recall@1: 0.52
+Recall@2: 0.66
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.93
+Recall@32: 0.96
+>>>>> Training: 61
+J_m: 0.769, J_synth: 30.409, J_metric: 31.179, J_g: 9541.212, J_soft: 7023.186, J_recon: 2518.026, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 61
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.78
+Recall@8: 0.86
+Recall@16: 0.92
+Recall@32: 0.97
+>>>>> Training: 62
+J_m: 0.969, J_synth: 30.881, J_metric: 31.850, J_g: 9182.101, J_soft: 6726.670, J_recon: 2455.431, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 62
+Recall@1: 0.53
+Recall@2: 0.67
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 63
+J_m: 0.904, J_synth: 30.620, J_metric: 31.524, J_g: 10206.891, J_soft: 7561.798, J_recon: 2645.093, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 63
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.77
+Recall@8: 0.86
+Recall@16: 0.93
+Recall@32: 0.96
+>>>>> Training: 64
+J_m: 0.650, J_synth: 27.779, J_metric: 28.428, J_g: 9324.793, J_soft: 6833.795, J_recon: 2490.998, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 64
+Recall@1: 0.53
+Recall@2: 0.66
+Recall@4: 0.78
+Recall@8: 0.86
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 65
+J_m: 0.776, J_synth: 28.688, J_metric: 29.464, J_g: 9452.082, J_soft: 7005.651, J_recon: 2446.431, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 65
+Recall@1: 0.54
+Recall@2: 0.67
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 66
+J_m: 0.644, J_synth: 25.949, J_metric: 26.594, J_g: 9854.199, J_soft: 7362.271, J_recon: 2491.928, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 66
+Recall@1: 0.54
+Recall@2: 0.67
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 67
+J_m: 0.669, J_synth: 25.783, J_metric: 26.452, J_g: 9198.495, J_soft: 6861.786, J_recon: 2336.709, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 67
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 68
+J_m: 0.652, J_synth: 27.495, J_metric: 28.147, J_g: 9314.464, J_soft: 6945.324, J_recon: 2369.141, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 68
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 69
+J_m: 0.700, J_synth: 23.941, J_metric: 24.641, J_g: 9812.831, J_soft: 7292.505, J_recon: 2520.326, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 69
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 70
+J_m: 0.734, J_synth: 21.512, J_metric: 22.246, J_g: 9640.286, J_soft: 7185.939, J_recon: 2454.346, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 70
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 71
+J_m: 0.640, J_synth: 21.465, J_metric: 22.106, J_g: 10383.617, J_soft: 7799.960, J_recon: 2583.657, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 71
+Recall@1: 0.54
+Recall@2: 0.67
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 72
+J_m: 0.887, J_synth: 18.357, J_metric: 19.244, J_g: 9535.781, J_soft: 7125.216, J_recon: 2410.566, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 72
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 73
+J_m: 0.863, J_synth: 20.866, J_metric: 21.730, J_g: 10401.979, J_soft: 7892.284, J_recon: 2509.695, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 73
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 74
+J_m: 0.815, J_synth: 20.456, J_metric: 21.271, J_g: 9641.620, J_soft: 7318.247, J_recon: 2323.373, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 74
+Recall@1: 0.54
+Recall@2: 0.67
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 75
+J_m: 0.472, J_synth: 19.972, J_metric: 20.444, J_g: 9528.078, J_soft: 7168.076, J_recon: 2360.002, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 75
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 76
+J_m: 0.596, J_synth: 19.138, J_metric: 19.734, J_g: 10037.313, J_soft: 7513.457, J_recon: 2523.855, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 76
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 77
+J_m: 0.707, J_synth: 17.393, J_metric: 18.101, J_g: 9461.012, J_soft: 7144.520, J_recon: 2316.492, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 77
+Recall@1: 0.53
+Recall@2: 0.67
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 78
+J_m: 0.657, J_synth: 18.492, J_metric: 19.149, J_g: 10394.899, J_soft: 7951.675, J_recon: 2443.223, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 78
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 79
+J_m: 0.547, J_synth: 16.034, J_metric: 16.581, J_g: 11036.335, J_soft: 8388.105, J_recon: 2648.230, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 79
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 80
+J_m: 0.657, J_synth: 16.966, J_metric: 17.623, J_g: 10576.306, J_soft: 8082.377, J_recon: 2493.929, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 80
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 81
+J_m: 0.705, J_synth: 18.950, J_metric: 19.655, J_g: 10512.853, J_soft: 8074.908, J_recon: 2437.945, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 81
+Recall@1: 0.54
+Recall@2: 0.67
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 82
+J_m: 0.625, J_synth: 17.947, J_metric: 18.571, J_g: 10504.103, J_soft: 8070.943, J_recon: 2433.160, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 82
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 83
+J_m: 0.648, J_synth: 18.264, J_metric: 18.912, J_g: 9502.057, J_soft: 7278.860, J_recon: 2223.196, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 83
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 84
+J_m: 0.611, J_synth: 18.218, J_metric: 18.830, J_g: 10281.737, J_soft: 7924.612, J_recon: 2357.125, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 84
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 85
+J_m: 0.589, J_synth: 16.569, J_metric: 17.158, J_g: 10687.922, J_soft: 8209.264, J_recon: 2478.657, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 85
+Recall@1: 0.54
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 86
+J_m: 0.619, J_synth: 15.590, J_metric: 16.209, J_g: 10726.196, J_soft: 8229.438, J_recon: 2496.757, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 86
+Recall@1: 0.55
+Recall@2: 0.67
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 87
+J_m: 0.524, J_synth: 15.834, J_metric: 16.358, J_g: 10614.344, J_soft: 8262.817, J_recon: 2351.527, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 87
+Recall@1: 0.55
+Recall@2: 0.68
+Recall@4: 0.78
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 88
+J_m: 0.422, J_synth: 15.771, J_metric: 16.192, J_g: 10208.181, J_soft: 7860.184, J_recon: 2347.997, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 88
+Recall@1: 0.56
+Recall@2: 0.68
+Recall@4: 0.79
+Recall@8: 0.87
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 89
+J_m: 0.523, J_synth: 15.033, J_metric: 15.556, J_g: 10525.575, J_soft: 8092.199, J_recon: 2433.376, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 89
+Recall@1: 0.56
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 90
+J_m: 0.588, J_synth: 13.369, J_metric: 13.957, J_g: 10572.147, J_soft: 8088.086, J_recon: 2484.061, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 90
+Recall@1: 0.55
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 91
+J_m: 0.474, J_synth: 13.128, J_metric: 13.602, J_g: 10758.407, J_soft: 8293.485, J_recon: 2464.922, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 91
+Recall@1: 0.55
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 92
+J_m: 0.612, J_synth: 13.854, J_metric: 14.467, J_g: 10743.332, J_soft: 8358.577, J_recon: 2384.755, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 92
+Recall@1: 0.56
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 93
+J_m: 0.424, J_synth: 13.515, J_metric: 13.939, J_g: 10753.093, J_soft: 8327.888, J_recon: 2425.205, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 93
+Recall@1: 0.56
+Recall@2: 0.69
+Recall@4: 0.81
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 94
+J_m: 0.467, J_synth: 13.355, J_metric: 13.821, J_g: 10787.119, J_soft: 8357.091, J_recon: 2430.028, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 94
+Recall@1: 0.56
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.93
+Recall@32: 0.97
+>>>>> Training: 95
+J_m: 0.365, J_synth: 13.699, J_metric: 14.064, J_g: 11191.973, J_soft: 8694.676, J_recon: 2497.297, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 95
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 96
+J_m: 0.532, J_synth: 12.426, J_metric: 12.958, J_g: 10000.096, J_soft: 7768.638, J_recon: 2231.458, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 96
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 97
+J_m: 0.478, J_synth: 13.627, J_metric: 14.105, J_g: 10903.659, J_soft: 8508.532, J_recon: 2395.127, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 97
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 98
+J_m: 0.405, J_synth: 12.187, J_metric: 12.592, J_g: 11377.121, J_soft: 8876.710, J_recon: 2500.411, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 98
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 99
+J_m: 0.434, J_synth: 12.238, J_metric: 12.672, J_g: 9954.979, J_soft: 7778.637, J_recon: 2176.342, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 99
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 100
+J_m: 0.361, J_synth: 13.961, J_metric: 14.322, J_g: 11008.175, J_soft: 8637.362, J_recon: 2370.813, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 100
+Recall@1: 0.57
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 101
+J_m: 0.348, J_synth: 12.217, J_metric: 12.566, J_g: 11878.215, J_soft: 9366.936, J_recon: 2511.279, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 101
+Recall@1: 0.57
+Recall@2: 0.69
+Recall@4: 0.8
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 102
+J_m: 0.522, J_synth: 11.270, J_metric: 11.792, J_g: 11364.139, J_soft: 8893.274, J_recon: 2470.865, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 102
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 103
+J_m: 0.453, J_synth: 11.541, J_metric: 11.994, J_g: 10681.016, J_soft: 8371.627, J_recon: 2309.389, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 103
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 104
+J_m: 0.472, J_synth: 11.768, J_metric: 12.240, J_g: 10696.854, J_soft: 8426.005, J_recon: 2270.849, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 104
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 105
+J_m: 0.428, J_synth: 10.661, J_metric: 11.089, J_g: 10864.769, J_soft: 8580.336, J_recon: 2284.434, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 105
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 106
+J_m: 0.431, J_synth: 10.734, J_metric: 11.165, J_g: 11695.495, J_soft: 9199.198, J_recon: 2496.297, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 106
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 107
+J_m: 0.429, J_synth: 10.716, J_metric: 11.145, J_g: 12236.039, J_soft: 9632.748, J_recon: 2603.291, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 107
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 108
+J_m: 0.471, J_synth: 10.678, J_metric: 11.149, J_g: 11865.629, J_soft: 9355.926, J_recon: 2509.703, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 108
+Recall@1: 0.56
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 109
+J_m: 0.345, J_synth: 9.952, J_metric: 10.297, J_g: 10464.802, J_soft: 8278.061, J_recon: 2186.740, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 109
+Recall@1: 0.56
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 110
+J_m: 0.379, J_synth: 10.926, J_metric: 11.306, J_g: 10510.928, J_soft: 8296.654, J_recon: 2214.275, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 110
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 111
+J_m: 0.314, J_synth: 10.625, J_metric: 10.938, J_g: 11531.658, J_soft: 9162.025, J_recon: 2369.632, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 111
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 112
+J_m: 0.374, J_synth: 9.541, J_metric: 9.915, J_g: 13301.579, J_soft: 10549.043, J_recon: 2752.536, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 112
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.8
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 113
+J_m: 0.492, J_synth: 9.384, J_metric: 9.876, J_g: 12057.203, J_soft: 9645.138, J_recon: 2412.065, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 113
+Recall@1: 0.56
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 114
+J_m: 0.386, J_synth: 10.400, J_metric: 10.786, J_g: 11094.225, J_soft: 8835.272, J_recon: 2258.952, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 114
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 115
+J_m: 0.423, J_synth: 10.371, J_metric: 10.794, J_g: 11868.271, J_soft: 9465.320, J_recon: 2402.951, J_ce: 0.048, J_wd: nan
+>>>>> Testing: 115
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 116
+J_m: 0.386, J_synth: 9.826, J_metric: 10.211, J_g: 11393.302, J_soft: 8994.637, J_recon: 2398.665, J_ce: 0.048, J_wd: nan
+>>>>> Testing: 116
+Recall@1: 0.58
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.88
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 117
+J_m: 0.394, J_synth: 10.507, J_metric: 10.901, J_g: 11363.907, J_soft: 9022.866, J_recon: 2341.041, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 117
+Recall@1: 0.57
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 118
+J_m: 0.359, J_synth: 11.043, J_metric: 11.402, J_g: 11652.174, J_soft: 9221.016, J_recon: 2431.158, J_ce: 0.048, J_wd: nan
+>>>>> Testing: 118
+Recall@1: 0.59
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 119
+J_m: 0.374, J_synth: 9.626, J_metric: 10.000, J_g: 12706.815, J_soft: 10117.534, J_recon: 2589.281, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 119
+Recall@1: 0.58
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 120
+J_m: 0.437, J_synth: 9.107, J_metric: 9.544, J_g: 10655.634, J_soft: 8481.583, J_recon: 2174.050, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 120
+Recall@1: 0.57
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 121
+J_m: 0.371, J_synth: 10.888, J_metric: 11.258, J_g: 12413.210, J_soft: 9847.917, J_recon: 2565.293, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 121
+Recall@1: 0.58
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 122
+J_m: 0.307, J_synth: 10.002, J_metric: 10.308, J_g: 12971.802, J_soft: 10376.626, J_recon: 2595.176, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 122
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 123
+J_m: 0.262, J_synth: 10.332, J_metric: 10.595, J_g: 12055.762, J_soft: 9675.920, J_recon: 2379.842, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 123
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 124
+J_m: 0.323, J_synth: 10.742, J_metric: 11.065, J_g: 11352.910, J_soft: 9201.653, J_recon: 2151.257, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 124
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 125
+J_m: 0.282, J_synth: 10.955, J_metric: 11.237, J_g: 11900.267, J_soft: 9549.332, J_recon: 2350.935, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 125
+Recall@1: 0.58
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 126
+J_m: 0.391, J_synth: 10.042, J_metric: 10.433, J_g: 12353.987, J_soft: 9862.494, J_recon: 2491.493, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 126
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 127
+J_m: 0.360, J_synth: 9.758, J_metric: 10.118, J_g: 11716.279, J_soft: 9361.072, J_recon: 2355.207, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 127
+Recall@1: 0.58
+Recall@2: 0.7
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 128
+J_m: 0.334, J_synth: 9.911, J_metric: 10.245, J_g: 12685.796, J_soft: 10213.357, J_recon: 2472.438, J_ce: 0.048, J_wd: nan
+>>>>> Testing: 128
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 129
+J_m: 0.290, J_synth: 9.533, J_metric: 9.823, J_g: 12214.800, J_soft: 9799.183, J_recon: 2415.617, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 129
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 130
+J_m: 0.343, J_synth: 9.155, J_metric: 9.498, J_g: 11908.832, J_soft: 9555.634, J_recon: 2353.198, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 130
+Recall@1: 0.59
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 131
+J_m: 0.332, J_synth: 9.118, J_metric: 9.449, J_g: 12420.691, J_soft: 10018.424, J_recon: 2402.268, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 131
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 132
+J_m: 0.356, J_synth: 10.026, J_metric: 10.382, J_g: 12641.032, J_soft: 10163.468, J_recon: 2477.565, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 132
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 133
+J_m: 0.312, J_synth: 9.323, J_metric: 9.636, J_g: 13251.230, J_soft: 10662.394, J_recon: 2588.835, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 133
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 134
+J_m: 0.297, J_synth: 8.734, J_metric: 9.031, J_g: 11930.963, J_soft: 9651.645, J_recon: 2279.318, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 134
+Recall@1: 0.58
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 135
+J_m: 0.274, J_synth: 10.327, J_metric: 10.600, J_g: 12057.842, J_soft: 9776.826, J_recon: 2281.016, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 135
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 136
+J_m: 0.385, J_synth: 9.663, J_metric: 10.047, J_g: 12803.568, J_soft: 10421.525, J_recon: 2382.043, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 136
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 137
+J_m: 0.381, J_synth: 9.352, J_metric: 9.733, J_g: 12638.758, J_soft: 10297.610, J_recon: 2341.148, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 137
+Recall@1: 0.59
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 138
+J_m: 0.317, J_synth: 9.427, J_metric: 9.744, J_g: 12576.385, J_soft: 10210.503, J_recon: 2365.883, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 138
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 139
+J_m: 0.304, J_synth: 9.528, J_metric: 9.832, J_g: 11860.621, J_soft: 9595.148, J_recon: 2265.473, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 139
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 140
+J_m: 0.302, J_synth: 9.204, J_metric: 9.506, J_g: 11550.989, J_soft: 9324.536, J_recon: 2226.453, J_ce: 0.047, J_wd: nan
+>>>>> Testing: 140
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 141
+J_m: 0.245, J_synth: 9.731, J_metric: 9.976, J_g: 13879.351, J_soft: 11280.353, J_recon: 2598.998, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 141
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 142
+J_m: 0.237, J_synth: 8.586, J_metric: 8.823, J_g: 12972.550, J_soft: 10526.876, J_recon: 2445.674, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 142
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 143
+J_m: 0.365, J_synth: 9.246, J_metric: 9.611, J_g: 13094.805, J_soft: 10640.971, J_recon: 2453.834, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 143
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 144
+J_m: 0.280, J_synth: 9.064, J_metric: 9.344, J_g: 12272.041, J_soft: 10026.715, J_recon: 2245.326, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 144
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 145
+J_m: 0.295, J_synth: 9.451, J_metric: 9.746, J_g: 12111.227, J_soft: 9872.161, J_recon: 2239.066, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 145
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 146
+J_m: 0.266, J_synth: 9.416, J_metric: 9.683, J_g: 12467.795, J_soft: 10203.145, J_recon: 2264.650, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 146
+Recall@1: 0.59
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 147
+J_m: 0.326, J_synth: 9.742, J_metric: 10.068, J_g: 14286.205, J_soft: 11650.630, J_recon: 2635.575, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 147
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 148
+J_m: 0.311, J_synth: 8.790, J_metric: 9.101, J_g: 12966.429, J_soft: 10576.847, J_recon: 2389.582, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 148
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 149
+J_m: 0.365, J_synth: 8.882, J_metric: 9.247, J_g: 14350.116, J_soft: 11881.909, J_recon: 2468.207, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 149
+Recall@1: 0.58
+Recall@2: 0.71
+Recall@4: 0.81
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 150
+J_m: 0.426, J_synth: 8.774, J_metric: 9.201, J_g: 12325.021, J_soft: 10199.742, J_recon: 2125.279, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 150
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 151
+J_m: 0.249, J_synth: 9.183, J_metric: 9.432, J_g: 12313.061, J_soft: 10079.697, J_recon: 2233.364, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 151
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 152
+J_m: 0.240, J_synth: 8.728, J_metric: 8.967, J_g: 12093.178, J_soft: 9858.080, J_recon: 2235.098, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 152
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 153
+J_m: 0.267, J_synth: 9.433, J_metric: 9.700, J_g: 11500.770, J_soft: 9431.675, J_recon: 2069.095, J_ce: 0.048, J_wd: nan
+>>>>> Testing: 153
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 154
+J_m: 0.177, J_synth: 10.958, J_metric: 11.135, J_g: 13217.906, J_soft: 10951.599, J_recon: 2266.307, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 154
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 155
+J_m: 0.273, J_synth: 9.848, J_metric: 10.121, J_g: 14396.462, J_soft: 11781.126, J_recon: 2615.336, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 155
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 156
+J_m: 0.345, J_synth: 8.905, J_metric: 9.250, J_g: 13788.229, J_soft: 11366.017, J_recon: 2422.213, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 156
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 157
+J_m: 0.300, J_synth: 9.090, J_metric: 9.391, J_g: 11834.741, J_soft: 9740.302, J_recon: 2094.439, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 157
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 158
+J_m: 0.215, J_synth: 9.341, J_metric: 9.556, J_g: 13440.141, J_soft: 11060.838, J_recon: 2379.303, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 158
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 159
+J_m: 0.267, J_synth: 8.622, J_metric: 8.889, J_g: 13367.925, J_soft: 10990.254, J_recon: 2377.671, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 159
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 160
+J_m: 0.255, J_synth: 8.869, J_metric: 9.125, J_g: 13920.180, J_soft: 11599.435, J_recon: 2320.745, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 160
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 161
+J_m: 0.268, J_synth: 9.236, J_metric: 9.504, J_g: 13584.263, J_soft: 11334.929, J_recon: 2249.333, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 161
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.98
+>>>>> Training: 162
+J_m: 0.295, J_synth: 9.137, J_metric: 9.432, J_g: 13687.702, J_soft: 11297.363, J_recon: 2390.339, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 162
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.83
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 163
+J_m: 0.219, J_synth: 8.245, J_metric: 8.464, J_g: 13014.365, J_soft: 10712.927, J_recon: 2301.437, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 163
+Recall@1: 0.59
+Recall@2: 0.71
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 164
+J_m: 0.259, J_synth: 8.871, J_metric: 9.130, J_g: 13428.130, J_soft: 11123.314, J_recon: 2304.816, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 164
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 165
+J_m: 0.277, J_synth: 8.491, J_metric: 8.768, J_g: 12851.011, J_soft: 10627.752, J_recon: 2223.259, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 165
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 166
+J_m: 0.198, J_synth: 9.039, J_metric: 9.236, J_g: 13451.641, J_soft: 11143.027, J_recon: 2308.614, J_ce: 0.050, J_wd: nan
+>>>>> Testing: 166
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 167
+J_m: 0.199, J_synth: 8.734, J_metric: 8.933, J_g: 13915.633, J_soft: 11468.325, J_recon: 2447.308, J_ce: 0.049, J_wd: nan
+>>>>> Testing: 167
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 168
+J_m: 0.328, J_synth: 9.136, J_metric: 9.464, J_g: 13998.788, J_soft: 11648.340, J_recon: 2350.448, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 168
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 169
+J_m: 0.245, J_synth: 8.763, J_metric: 9.008, J_g: 14252.587, J_soft: 11804.410, J_recon: 2448.177, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 169
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 170
+J_m: 0.236, J_synth: 10.158, J_metric: 10.395, J_g: 13960.968, J_soft: 11746.469, J_recon: 2214.499, J_ce: 0.057, J_wd: nan
+>>>>> Testing: 170
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 171
+J_m: 0.345, J_synth: 10.492, J_metric: 10.837, J_g: 13731.819, J_soft: 11475.091, J_recon: 2256.728, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 171
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 172
+J_m: 0.193, J_synth: 8.909, J_metric: 9.102, J_g: 12951.568, J_soft: 10782.313, J_recon: 2169.256, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 172
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 173
+J_m: 0.218, J_synth: 9.389, J_metric: 9.607, J_g: 12676.018, J_soft: 10549.275, J_recon: 2126.743, J_ce: 0.051, J_wd: nan
+>>>>> Testing: 173
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 174
+J_m: 0.174, J_synth: 9.446, J_metric: 9.620, J_g: 14338.534, J_soft: 11975.862, J_recon: 2362.672, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 174
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 175
+J_m: 0.251, J_synth: 8.591, J_metric: 8.842, J_g: 14656.541, J_soft: 12210.444, J_recon: 2446.097, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 175
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 176
+J_m: 0.278, J_synth: 8.507, J_metric: 8.785, J_g: 15279.178, J_soft: 12821.693, J_recon: 2457.486, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 176
+Recall@1: 0.59
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 177
+J_m: 0.303, J_synth: 8.318, J_metric: 8.621, J_g: 14298.375, J_soft: 12005.015, J_recon: 2293.360, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 177
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 178
+J_m: 0.267, J_synth: 8.554, J_metric: 8.821, J_g: 12439.980, J_soft: 10418.667, J_recon: 2021.313, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 178
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 179
+J_m: 0.164, J_synth: 9.682, J_metric: 9.846, J_g: 12751.587, J_soft: 10620.087, J_recon: 2131.500, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 179
+Recall@1: 0.61
+Recall@2: 0.74
+Recall@4: 0.84
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 180
+J_m: 0.273, J_synth: 9.316, J_metric: 9.589, J_g: 13769.231, J_soft: 11501.445, J_recon: 2267.786, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 180
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 181
+J_m: 0.164, J_synth: 8.280, J_metric: 8.444, J_g: 15296.978, J_soft: 12694.072, J_recon: 2602.906, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 181
+Recall@1: 0.6
+Recall@2: 0.72
+Recall@4: 0.82
+Recall@8: 0.89
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 182
+J_m: 0.261, J_synth: 8.077, J_metric: 8.338, J_g: 14585.821, J_soft: 12310.211, J_recon: 2275.610, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 182
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 183
+J_m: 0.206, J_synth: 8.871, J_metric: 9.077, J_g: 13317.786, J_soft: 11301.845, J_recon: 2015.942, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 183
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 184
+J_m: 0.247, J_synth: 9.337, J_metric: 9.584, J_g: 14882.558, J_soft: 12413.537, J_recon: 2469.021, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 184
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 185
+J_m: 0.245, J_synth: 7.984, J_metric: 8.229, J_g: 14915.924, J_soft: 12492.228, J_recon: 2423.697, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 185
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 186
+J_m: 0.249, J_synth: 7.843, J_metric: 8.092, J_g: 13456.957, J_soft: 11344.829, J_recon: 2112.128, J_ce: 0.052, J_wd: nan
+>>>>> Testing: 186
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 187
+J_m: 0.208, J_synth: 8.253, J_metric: 8.460, J_g: 12899.900, J_soft: 10886.492, J_recon: 2013.408, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 187
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 188
+J_m: 0.190, J_synth: 8.924, J_metric: 9.115, J_g: 13576.873, J_soft: 11478.951, J_recon: 2097.922, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 188
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 189
+J_m: 0.173, J_synth: 8.893, J_metric: 9.066, J_g: 15500.185, J_soft: 13020.494, J_recon: 2479.692, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 189
+Recall@1: 0.6
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.94
+Recall@32: 0.97
+>>>>> Training: 190
+J_m: 0.264, J_synth: 7.566, J_metric: 7.830, J_g: 14009.672, J_soft: 11706.093, J_recon: 2303.579, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 190
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 191
+J_m: 0.179, J_synth: 7.572, J_metric: 7.752, J_g: 14163.513, J_soft: 11980.059, J_recon: 2183.454, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 191
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 192
+J_m: 0.175, J_synth: 7.646, J_metric: 7.821, J_g: 14463.261, J_soft: 12221.371, J_recon: 2241.890, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 192
+Recall@1: 0.62
+Recall@2: 0.74
+Recall@4: 0.84
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 193
+J_m: 0.208, J_synth: 7.681, J_metric: 7.889, J_g: 13492.016, J_soft: 11452.270, J_recon: 2039.747, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 193
+Recall@1: 0.62
+Recall@2: 0.74
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 194
+J_m: 0.270, J_synth: 8.559, J_metric: 8.829, J_g: 15344.258, J_soft: 13021.539, J_recon: 2322.719, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 194
+Recall@1: 0.61
+Recall@2: 0.74
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 195
+J_m: 0.145, J_synth: 7.400, J_metric: 7.545, J_g: 14145.245, J_soft: 11972.574, J_recon: 2172.671, J_ce: 0.053, J_wd: nan
+>>>>> Testing: 195
+Recall@1: 0.62
+Recall@2: 0.74
+Recall@4: 0.84
+Recall@8: 0.91
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 196
+J_m: 0.215, J_synth: 8.157, J_metric: 8.373, J_g: 15287.808, J_soft: 12856.831, J_recon: 2430.977, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 196
+Recall@1: 0.61
+Recall@2: 0.74
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
+>>>>> Training: 197
+J_m: 0.176, J_synth: 7.851, J_metric: 8.027, J_g: 15171.809, J_soft: 12892.314, J_recon: 2279.495, J_ce: 0.055, J_wd: nan
+>>>>> Testing: 197
+Recall@1: 0.62
+Recall@2: 0.74
+Recall@4: 0.84
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 198
+J_m: 0.189, J_synth: 7.954, J_metric: 8.143, J_g: 14322.410, J_soft: 12137.741, J_recon: 2184.669, J_ce: 0.054, J_wd: nan
+>>>>> Testing: 198
+Recall@1: 0.62
+Recall@2: 0.74
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.98
+>>>>> Training: 199
+J_m: 0.215, J_synth: 7.687, J_metric: 7.902, J_g: 12866.783, J_soft: 10960.554, J_recon: 1906.229, J_ce: 0.056, J_wd: nan
+>>>>> Testing: 199
+Recall@1: 0.61
+Recall@2: 0.73
+Recall@4: 0.83
+Recall@8: 0.9
+Recall@16: 0.95
+Recall@32: 0.97
