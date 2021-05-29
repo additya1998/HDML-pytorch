@@ -70,7 +70,8 @@ class Cars196Dataset(Dataset):
 						self.label_to_index[class_idx][df_idx2]
 
 			class_nidx = np.random.choice(len(self.label_to_index) - 1)
-			if class_nidx == class_idx: class_nidx = class_nidx + 1
+			# Edited == to >=
+			if class_nidx >= class_idx: class_nidx = class_nidx + 1
 
 			total_images = len(self.label_to_index[class_nidx])
 			df_idx3 = np.random.choice(total_images)
