@@ -47,12 +47,12 @@ class NPairLoss(nn.Module):
 
 
 	def forward(self, x):
-		# x is of size N x M, M=2 default
+		# x is of size N x M x D, M=2 default
 
 		anchors, positives, negatives = self.generate_tuples(x)
 
 		neg_pos = negatives - positives #N x N-1 x D broadcasted
-		anch_neg_pos = torch.exp(torch.matmul(n_anchors, n_negatives.permute(0, 2, 1)).squeeze(1)) #N x N-1
+		anch_neg_pos = torch.exp(torch.matmul(anchors, neg_pos.permute(0, 2, 1)).squeeze(1)) #N x N-1
 		anch_neg_pos = torch.log(1 + anch_neg_pos.sum(dim=1)) #N
 
 		return anch_neg_pos.mean()
