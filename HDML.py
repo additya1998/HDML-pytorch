@@ -138,7 +138,7 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(True):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
-				embs_za, embs_zp, embs_zn = torch.split(embs_z, n_samples)
+				
 				J_m = self.metric_loss_fn(embs_z)
 				J_m = J_m * np.exp(-self.beta / j_g)
 				self.optimizer_c.zero_grad()

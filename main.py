@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader, RandomSampler
 
 from HDML import HDML
 from GoogLeNet import googlenet
-from utils import TripletLoss
+from losses import TripletLoss, NPairLoss
 from trainer import run_experiment
 from datasets.cars196 import Cars196Dataset
 
@@ -26,6 +26,7 @@ parser.add_argument('--max_steps',       action='store', type=int,   default=200
 parser.add_argument('--learning_rate',   action='store', type=float, default=7e-5)
 parser.add_argument('--num_workers',     action='store', type=int,   default=15)
 parser.add_argument('--start_step',      action='store', type=int,   default=0)
+parser.add_argument('--loss_fn',      	 action='store', type=str,   default="npair")
 
 # Model Parameters
 parser.add_argument('--embedding_size', action='store', type=int,   default=128)
@@ -71,8 +72,13 @@ train_dataloader = DataLoader(train_dataset, sampler=train_sampler, \
 test_dataset = Cars196Dataset('datasets', 'test', args.image_size)
 test_dataloader = DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
 
+if args.loss_fn == "triplet":
+	loss_fn = TripletLoss(margin=0.1)
+elif args.loss_fn == "npair":
+	loss_fn = NPairLoss()
+else:
+	raise NotImplementedError
 
-loss_fn = TripletLoss(margin=0.1)
 backbone_network = googlenet(pretrained=True)
 network = HDML(backbone_network, loss_fn, args)
 network = network.to(args.device)
