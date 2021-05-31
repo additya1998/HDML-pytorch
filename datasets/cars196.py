@@ -4,51 +4,9 @@ import pandas as pd
 from PIL import Image
 
 import torch
-from torch.utils.data import Dataset, DataLoader, RandomSampler
+from torch.utils.data import Dataset, DataLoader, RandomSampler, BatchSampler
 from torchvision import datasets, transforms
-
-"""
-	Taken from: https://github.com/adambielski/siamese-triplet/
-"""
-class BalancedBatchSampler(BatchSampler):
-    """
-    BatchSampler - from a MNIST-like dataset, samples n_classes and within these classes samples n_samples.
-    Returns batches of size n_classes * n_samples
-    """
-
-    def __init__(self, labels, n_classes, n_samples):
-        self.labels = labels
-        self.labels_set = list(set(self.labels.numpy()))
-        self.label_to_indices = {label: np.where(self.labels.numpy() == label)[0]
-                                 for label in self.labels_set}
-        for l in self.labels_set:
-            np.random.shuffle(self.label_to_indices[l])
-        self.used_label_indices_count = {label: 0 for label in self.labels_set}
-        self.count = 0
-        self.n_classes = n_classes
-        self.n_samples = n_samples
-        self.n_dataset = len(self.labels)
-        self.batch_size = self.n_samples * self.n_classes
-
-    def __iter__(self):
-        self.count = 0
-        while self.count + self.batch_size < self.n_dataset:
-            classes = np.random.choice(self.labels_set, self.n_classes, replace=False)
-            indices = []
-            for class_ in classes:
-                indices.extend(self.label_to_indices[class_][
-                               self.used_label_indices_count[class_]:self.used_label_indices_count[
-                                                                         class_] + self.n_samples])
-                self.used_label_indices_count[class_] += self.n_samples
-                if self.used_label_indices_count[class_] + self.n_samples > len(self.label_to_indices[class_]):
-                    np.random.shuffle(self.label_to_indices[class_])
-                    self.used_label_indices_count[class_] = 0
-            yield indices
-            self.count += self.n_classes * self.n_samples
-
-    def __len__(self):
-        return self.n_dataset // self.batch_size
-
+from samplers import BalancedBatchSampler
 
 class Cars196Dataset(Dataset):
 
@@ -106,7 +64,7 @@ class Cars196Dataset(Dataset):
 
 class Cars196TripletDataset(Cars196Dataset):
 	def __init__(self, source_path, dataset_type, image_size):
-		super(Cars196TripletDataset, self, source_path, dataset_type, image_size).__init__()
+		super(Cars196TripletDataset, self).__init__(source_path, dataset_type, image_size)
 
 	def __len__(self):
 		if self.dataset_type == 'train': return len(self.label_to_index)
@@ -143,13 +101,36 @@ class Cars196TripletDataset(Cars196Dataset):
 		else: return self.load_single(class_idx)
 
 
+class Cars196NPairDataset(Cars196Dataset):
+	def __init__(self, source_path, dataset_type, image_size):
+		super(Cars196NPairDataset, self).__init__(source_path, dataset_type, image_size)
+
+	def __len__(self):
+		if self.dataset_type == 'train': 
+			raise NotImplementedError
+		else: return self.df.shape[0]
+
+	def __getitem__(self, idx):
+		"""
+			This dataloader is indexed by image id
+		"""
+		return self.load_single(idx)
+
+
 if __name__ == '__main__':
 
-	dataset = Cars196Dataset('.', 'train', 227)
-	sampler = RandomSampler(dataset, replacement=True, num_samples=int(1e15))
-	dataloader = DataLoader(dataset, sampler=sampler,  batch_size=128, num_workers=0)
+	# dataset = Cars196Dataset('.', 'train', 227)
+	# sampler = RandomSampler(dataset, replacement=True, num_samples=int(1e15))
+	# dataloader = DataLoader(dataset, sampler=sampler,  batch_size=128, num_workers=0)
+
+
+	dataset = Cars196NPairDataset('.', 'train', 227)
+	balanced_sampler = BalancedBatchSampler(dataset.df.label, 30, 2)
+	dataloader = DataLoader(dataset, batch_sampler=balanced_sampler, num_workers=0)
+
 
 	for step, data in enumerate(dataloader):
-		print(step, data[0].shape, data[1].shape, data[2].shape, data[2])
+		# import pdb; pdb.set_trace()
+		print(data)
 
-		if step > 10: break
+		if step > 2: break

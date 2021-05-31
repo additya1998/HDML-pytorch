@@ -11,22 +11,25 @@ from HDML import HDML
 from GoogLeNet import googlenet
 from losses import TripletLoss, NPairLoss
 from trainer import run_experiment
-from datasets.cars196 import Cars196Dataset
+from datasets.cars196 import Cars196Dataset, Cars196TripletDataset, Cars196NPairDataset
+from datasets.samplers import BalancedBatchSampler
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--experiment', action='store', type=str, required=True)
 
 # Training Parameters
-parser.add_argument('--batch_size',      action='store', type=int,   default=40)
-parser.add_argument('--test_batch_size', action='store', type=int,   default=128)
-parser.add_argument('--batch_per_epoch', action='store', type=int,   default=500)
-parser.add_argument('--print_frq',       action='store', type=int,   default=100)
-parser.add_argument('--max_steps',       action='store', type=int,   default=200000)
-parser.add_argument('--learning_rate',   action='store', type=float, default=7e-5)
-parser.add_argument('--num_workers',     action='store', type=int,   default=15)
-parser.add_argument('--start_step',      action='store', type=int,   default=0)
-parser.add_argument('--loss_fn',      	 action='store', type=str,   default="npair")
+parser.add_argument('--batch_size',      		action='store', type=int,   default=40)
+parser.add_argument('--test_batch_size', 		action='store', type=int,   default=128)
+parser.add_argument('--batch_per_epoch', 		action='store', type=int,   default=500)
+parser.add_argument('--print_frq',       		action='store', type=int,   default=100)
+parser.add_argument('--max_steps',       		action='store', type=int,   default=200000)
+parser.add_argument('--learning_rate',   		action='store', type=float, default=7e-5)
+parser.add_argument('--num_workers',     		action='store', type=int,   default=15)
+parser.add_argument('--start_step',      		action='store', type=int,   default=0)
+parser.add_argument('--loss_fn',      	 		action='store', type=str,   default="npair")
+parser.add_argument('--num_classes_per_batch',  action='store', type=int,   default=20)
+parser.add_argument('--num_samples_per_class',  action='store', type=int,   default=2)
 
 # Model Parameters
 parser.add_argument('--embedding_size', action='store', type=int,   default=128)
@@ -64,13 +67,24 @@ if not os.path.exists(args.experiment): os.makedirs(args.experiment)
 
 # setup dataloaders
 args.n_classes = 98
-train_dataset = Cars196Dataset('datasets', 'train', args.image_size)
-train_sampler = RandomSampler(train_dataset, replacement=True, num_samples=int(1e15))
-train_dataloader = DataLoader(train_dataset, sampler=train_sampler, \
-				batch_size=args.batch_size, num_workers=args.num_workers)
+if args.loss_fn == "triplet":
+	train_dataset = Cars196TripletDataset('datasets', 'train', args.image_size)
+	train_sampler = RandomSampler(train_dataset, replacement=True, num_samples=int(1e15))
+	train_dataloader = DataLoader(train_dataset, sampler=train_sampler, \
+					batch_size=args.batch_size, num_workers=args.num_workers)
 
-test_dataset = Cars196Dataset('datasets', 'test', args.image_size)
-test_dataloader = DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+	test_dataset = Cars196TripletDataset('datasets', 'test', args.image_size)
+	test_dataloader = DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+elif args.loss_fn == "npair":
+	train_dataset = Cars196NPairDataset('datasets', 'train', args.image_size)
+	train_sampler = BalancedBatchSampler(train_dataset.df.label, args.num_classes_per_batch, args.num_samples_per_class)
+	train_dataloader = DataLoader(train_dataset, batch_sampler=train_sampler, num_workers=args.num_workers)
+
+	test_dataset = Cars196NPairDataset('datasets', 'test', args.image_size)
+	test_dataloader = DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
+else:
+	raise NotImplementedError
+
 
 if args.loss_fn == "triplet":
 	loss_fn = TripletLoss(margin=0.1)
