@@ -39,7 +39,7 @@ parser.add_argument('--weight_decay',   action='store', type=float, default=5e-3
 parser.add_argument('--saved_ckpt',     action='store', type=str, default=None)
 
 # HDML Parameters
-parser.add_argument('--apply_HDML',      action='store_true',        default=True)
+parser.add_argument('--apply_HDML',      action='store_true')
 parser.add_argument('--softmax_factor',  action='store', type=float, default=1e+4)
 parser.add_argument('--beta',            action='store', type=float, default=1e+4)
 parser.add_argument('--lr_generator',    action='store', type=float, default=1e-2)

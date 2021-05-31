@@ -15,12 +15,19 @@ def glorot_uniform_initializer(m):
 def distance(embsA, embsB):
 	return torch.sqrt(torch.sum(torch.square(embsA - embsB), axis=1))
 
-
 class Pulling:
 
 	def __init__(self, alpha, embedding_size):
 		self.alpha = alpha
 		self.embedding_size = embedding_size
+
+	def transform(self, embs, j):
+		raise NotImplementedError
+
+class TripletPulling:
+
+	def __init__(self, alpha, embedding_size):
+		super(TripletPulling, self).__init__(alpha, embedding_size)
 
 	def transform(self, embs, j):
 		embs_a, embs_p, embs_n = torch.chunk(embs, 3, dim=0)
@@ -66,7 +73,7 @@ class HDML(nn.Module):
 			self.softmax_factor = args.softmax_factor
 
 			# netwoks and optimizers
-			self.pulling = Pulling(self.alpha, self.z_embedding_size)
+			self.pulling = TripletPulling(self.alpha, self.z_embedding_size)
 			self.ce_loss_fn = nn.CrossEntropyLoss()
 			self.generator = nn.Sequential(
 				nn.Linear(self.z_embedding_size, 512),
@@ -120,7 +127,7 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(True):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
-				J_m = self.metric_loss_fn(embs_z)
+				J_m = self.metric_loss_fn(F.normalize(embs_z, p=2, dim=1))
 				self.optimizer_c.zero_grad()
 				J_m.backward()
 				self.optimizer_c.step()

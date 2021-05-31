@@ -34,7 +34,7 @@ class NPairLoss(nn.Module):
 		M = self.num_samples_per_class
 		N = int(Ntup / M)
 		x = x.view(N, M, D)
-		print(N, M, D)
+		# print(N, M, D)
 
 		n_anchors, n_positive = [], []
 		for i in range(N):
@@ -57,10 +57,15 @@ class NPairLoss(nn.Module):
 	def forward(self, x):
 		# x is of size NM x D, M=2 default
 
+		# import pdb; pdb.set_trace()
 		anchors, positives, negatives = self.generate_tuples(x)
+		# pdb.set_trace()
 
 		neg_pos = negatives - positives #N x N-1 x D broadcasted
+		# pdb.set_trace()
 		anch_neg_pos = torch.exp(torch.matmul(anchors, neg_pos.permute(0, 2, 1)).squeeze(1)) #N x N-1
+		# import pdb; pdb.set_trace()
 		anch_neg_pos = torch.log(1 + anch_neg_pos.sum(dim=1)) #N
+		# pdb.set_trace()
 
-		return anch_neg_pos.mean()
+		return anch_neg_pos.sum()
