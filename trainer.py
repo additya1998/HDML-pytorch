@@ -56,10 +56,16 @@ def run_experiment(train_dataloader, test_dataloader, network, writer, load_dict
 
 			if step >= args.batch_per_epoch: break
 
-			iA, lA, iP, lP, iN, lN = data
-			ims, labels = torch.cat((iA, iP, iN), axis=0), torch.cat((lA, lP, lN))
+			if args.loss_fn == "triplet":
+				iA, lA, iP, lP, iN, lN = data
+				ims, labels = torch.cat((iA, iP, iN), axis=0), torch.cat((lA, lP, lN))
+				n_samples = iA.shape[0]
+			else:
+				ims, labels = data
+				n_samples = ims.shape[0]
+
 			ims, labels = ims.to(args.device), labels.to(args.device)
-			n_samples = iA.shape[0]
+			
 
 			if args.apply_HDML:
 				j_avg, j_g = J[0].avg, J[4].avg
@@ -67,6 +73,7 @@ def run_experiment(train_dataloader, test_dataloader, network, writer, load_dict
 				j_avg, j_g = None, None
 
 			step_losses = network(ims, labels, j_avg, j_g)
+
 			for i, k in enumerate(J_dict): 
 				J[i].update(step_losses[k], n_samples)
 

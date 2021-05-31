@@ -6,7 +6,7 @@ from PIL import Image
 import torch
 from torch.utils.data import Dataset, DataLoader, RandomSampler, BatchSampler
 from torchvision import datasets, transforms
-from samplers import BalancedBatchSampler
+from datasets.samplers import BalancedBatchSampler
 
 class Cars196Dataset(Dataset):
 

@@ -89,7 +89,7 @@ else:
 if args.loss_fn == "triplet":
 	loss_fn = TripletLoss(margin=0.1)
 elif args.loss_fn == "npair":
-	loss_fn = NPairLoss()
+	loss_fn = NPairLoss(num_samples_per_class=args.num_samples_per_class)
 else:
 	raise NotImplementedError
 

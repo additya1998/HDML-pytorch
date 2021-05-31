@@ -18,17 +18,24 @@ class TripletLoss(nn.Module):
 
 
 class NPairLoss(nn.Module):
-	def __init__(self):
+	def __init__(self, num_samples_per_class):
 		super(NPairLoss, self).__init__()
-		
+		self.num_samples_per_class = num_samples_per_class
+
 	def generate_tuples(self, x):
 		"""
+			Input: 2N x D
 			Returns
 				n_anchors: torch.Tensor of size N x 1 x D
 				n_positive: torch.Tensor of size N x 1 x D
 				n_negatives: torch.Tensor of size N x N-1 x D
 		"""
-		N, M, D = x.shape
+		Ntup, D = x.shape
+		M = self.num_samples_per_class
+		N = int(Ntup / M)
+		x = x.view(N, M, D)
+		print(N, M, D)
+
 		n_anchors, n_positive = [], []
 		for i in range(N):
 			anchor, positive = x[i][torch.randperm(M)[:2]]
@@ -48,7 +55,7 @@ class NPairLoss(nn.Module):
 
 
 	def forward(self, x):
-		# x is of size N x M x D, M=2 default
+		# x is of size NM x D, M=2 default
 
 		anchors, positives, negatives = self.generate_tuples(x)
 
