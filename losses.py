@@ -18,9 +18,10 @@ class TripletLoss(nn.Module):
 
 
 class NPairLoss(nn.Module):
-	def __init__(self, num_samples_per_class):
+	def __init__(self, l2_reg, num_samples_per_class):
 		super(NPairLoss, self).__init__()
 		self.num_samples_per_class = num_samples_per_class
+		self.l2_reg = l2_reg
 
 	def generate_tuples(self, x):
 		"""
@@ -67,5 +68,9 @@ class NPairLoss(nn.Module):
 		# import pdb; pdb.set_trace()
 		anch_neg_pos = torch.log(1 + anch_neg_pos.sum(dim=1)) #N
 		# pdb.set_trace()
+		l2_loss = torch.sum(anchors ** 2 + positives ** 2) / anchors.shape[0]
 
-		return anch_neg_pos.sum()
+		# TODO: check if mean or sum?
+		total_loss = anch_neg_pos.mean() + self.l2_reg * l2_loss
+
+		return total_loss
