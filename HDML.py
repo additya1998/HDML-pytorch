@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
+from losses import generate_tuples_npair
 
 
 def glorot_uniform_initializer(m):
@@ -24,15 +25,16 @@ class Pulling:
 	def transform(self, embs, j):
 		raise NotImplementedError
 
-class TripletPulling:
+class TripletPulling(Pulling):
 
 	def __init__(self, alpha, embedding_size):
 		super(TripletPulling, self).__init__(alpha, embedding_size)
 
 	def transform(self, embs, j):
 		embs_a, embs_p, embs_n = torch.chunk(embs, 3, dim=0)
-		dp = distance(embs_a, embs_p)
-		dn = distance(embs_a, embs_n)
+		dp = distance(embs_a, embs_p) #N
+		dn = distance(embs_a, embs_n) #N
+
 		r = ((dp + (dn - dp) * np.exp(-self.alpha / j)) / dn).unsqueeze(-1).repeat(1, self.embedding_size)
 		embs_nn = embs_a + torch.mul((embs_n - embs_a), r)
 		mask = torch.ge(dp, dn)
@@ -41,6 +43,32 @@ class TripletPulling:
 		mask_inverse = mask_inverse.float().unsqueeze(-1).repeat(1, self.embedding_size)
 		embs_n_ret = torch.mul(embs_n, mask) + torch.mul(embs_nn, mask_inverse)
 		return torch.cat((embs_a, embs_p, embs_n_ret), axis=0)
+
+
+class NPairPulling(Pulling):
+	def __init__(self, alpha, embedding_size, num_samples_per_class):
+		super(NPairPulling, self).__init__(alpha, embedding_size)
+		self.num_samples_per_class = num_samples_per_class
+
+	def transform(self, embs, j):
+		embs_a, embs_p, embs_n = generate_tuples_npair(embs, self.num_samples_per_class)
+
+		# N x 1
+		dp = torch.sqrt(torch.pow(embs_a.squeeze(1) - embs_p.squeeze(1), 2).sum(1)).unsqueeze(1)
+		# N x N - 1
+		dn = torch.sqrt(torch.pow(embs_a - embs_n, 2).sum(2))
+
+		r = ((dp + (dn - dp) * np.exp(-self.alpha / j)) / dn).unsqueeze(-1).repeat(1, 1, self.embedding_size)
+		embs_nn = embs_a + torch.mul((embs_n - embs_a), r)
+		mask = torch.ge(dp, dn)
+		mask_inverse = ~mask
+
+		mask = mask.float().unsqueeze(-1).repeat(1, 1, self.embedding_size)
+		mask_inverse = mask_inverse.float().unsqueeze(-1).repeat(1, 1, self.embedding_size)
+		embs_n_ret = torch.mul(embs_n, mask) + torch.mul(embs_nn, mask_inverse)
+
+		return embs_a, embs_p, embs_n_ret
+
 
 
 class HDML(nn.Module):
@@ -73,7 +101,11 @@ class HDML(nn.Module):
 			self.softmax_factor = args.softmax_factor
 
 			# netwoks and optimizers
-			self.pulling = TripletPulling(self.alpha, self.z_embedding_size)
+			if args.loss_fn == "triplet":
+				self.pulling = TripletPulling(self.alpha, self.z_embedding_size)
+			elif args.loss_fn == "npair":
+				self.pulling = NPairPulling(self.alpha, self.z_embedding_size, args.num_samples_per_class)
+
 			self.ce_loss_fn = nn.CrossEntropyLoss()
 			self.generator = nn.Sequential(
 				nn.Linear(self.z_embedding_size, 512),
@@ -166,12 +198,16 @@ class HDML(nn.Module):
 				self.optimizer_s.step()
 
 			embs_z_hard = self.pulling.transform(embs_z, j_avg)
+
+			# TODO: modify for npair
 			embs_z_total = torch.cat((embs_z, embs_z_hard), axis=0)
 
 			# train generator
 			with torch.set_grad_enabled(True):
 				embs_yg_total = self.generator(embs_z_total)
 				preds_yg_total = self.softmax_classifier(embs_yg_total)
+
+				# TODO: modify for npair
 				labels_yg_total = torch.cat((labels, labels))
 				J_soft = self.ce_loss_fn(preds_yg_total, labels_yg_total)
 				J_soft = self.softmax_factor * self.lmbda * J_soft
@@ -189,6 +225,7 @@ class HDML(nn.Module):
 
 			# train yz_network and (backbone + yz_network) optimizer step
 			with torch.set_grad_enabled(True):
+				# TODO: modify for npair, check for each a, p if you take all negs (not ment in paper)
 				embs_zg_hard = self.yz_network(embs_yg_hard)
 				J_synth = self.metric_loss_fn(embs_zg_hard)
 				J_synth = (1 - np.exp(-self.beta / j_g)) * J_synth

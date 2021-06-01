@@ -2,6 +2,37 @@ import torch as torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+def generate_tuples_npair(x, num_samples_per_class):
+	"""
+		Input: 2N x D
+		Returns
+			n_anchors: torch.Tensor of size N x 1 x D
+			n_positive: torch.Tensor of size N x 1 x D
+			n_negatives: torch.Tensor of size N x N-1 x D
+	"""
+	Ntup, D = x.shape
+	M = num_samples_per_class
+	N = int(Ntup / M)
+	x = x.view(N, M, D)
+	# print(N, M, D)
+
+	n_anchors, n_positive = [], []
+	for i in range(N):
+		anchor, positive = x[i][torch.randperm(M)[:2]]
+		n_anchors.append(anchor.unsqueeze(0))
+		n_positive.append(positive.unsqueeze(0))
+
+	n_anchors = torch.cat((n_anchors), dim=0).unsqueeze(1) #N x 1 x D
+	n_positive = torch.cat((n_positive), dim=0).unsqueeze(1) #N x 1 x D
+	
+	n_negatives = []
+	for i in range(N):
+		negs_i = torch.cat((x[:i, 1, :], x[i+1:, 1, :])).unsqueeze(0)
+		n_negatives.append(negs_i)
+	n_negatives = torch.cat((n_negatives), dim=0) # N x N-1 x D
+
+	return n_anchors, n_positive, n_negatives
+
 class TripletLoss(nn.Module):
 	def __init__(self, margin=0.1):
 		super(TripletLoss, self).__init__()
@@ -23,42 +54,10 @@ class NPairLoss(nn.Module):
 		self.num_samples_per_class = num_samples_per_class
 		self.l2_reg = l2_reg
 
-	def generate_tuples(self, x):
-		"""
-			Input: 2N x D
-			Returns
-				n_anchors: torch.Tensor of size N x 1 x D
-				n_positive: torch.Tensor of size N x 1 x D
-				n_negatives: torch.Tensor of size N x N-1 x D
-		"""
-		Ntup, D = x.shape
-		M = self.num_samples_per_class
-		N = int(Ntup / M)
-		x = x.view(N, M, D)
-		# print(N, M, D)
-
-		n_anchors, n_positive = [], []
-		for i in range(N):
-			anchor, positive = x[i][torch.randperm(M)[:2]]
-			n_anchors.append(anchor.unsqueeze(0))
-			n_positive.append(positive.unsqueeze(0))
-
-		n_anchors = torch.cat((n_anchors), dim=0).unsqueeze(1) #N x 1 x D
-		n_positive = torch.cat((n_positive), dim=0).unsqueeze(1) #N x 1 x D
-		
-		n_negatives = []
-		for i in range(N):
-			negs_i = torch.cat((x[:i, 1, :], x[i+1:, 1, :])).unsqueeze(0)
-			n_negatives.append(negs_i)
-		n_negatives = torch.cat((n_negatives), dim=0) # N x N-1 x D
-
-		return n_anchors, n_positive, n_negatives
-
-
 	def forward(self, x):
 		# x is of size NM x D, M=2 default
 		# N x 1 x D, N x 1 x D, N x N-1 x D
-		anchors, positives, negatives = self.generate_tuples(x)
+		anchors, positives, negatives = generate_tuples_npair(x, self.num_samples_per_class)
 
 		# N
 		anch_pos_l2 = torch.sqrt(torch.pow(anchors.squeeze(1) - positives.squeeze(1), 2).sum(1))
@@ -75,5 +74,7 @@ class NPairLoss(nn.Module):
 		l2_loss = (anchors.squeeze(1) ** 2 + positives.squeeze(1) ** 2).sum(1).mean()
 
 		total_loss = metric_loss + self.l2_reg * l2_loss
+
+		# print(metric_loss, l2_loss, total_loss)
 
 		return total_loss
