@@ -57,20 +57,23 @@ class NPairLoss(nn.Module):
 
 	def forward(self, x):
 		# x is of size NM x D, M=2 default
-
-		# import pdb; pdb.set_trace()
+		# N x 1 x D, N x 1 x D, N x N-1 x D
 		anchors, positives, negatives = self.generate_tuples(x)
-		# pdb.set_trace()
 
-		neg_pos = negatives - positives #N x N-1 x D broadcasted
-		# pdb.set_trace()
-		anch_neg_pos = torch.exp(torch.matmul(anchors, neg_pos.permute(0, 2, 1)).squeeze(1)) #N x N-1
+		# N
+		anch_pos_l2 = torch.sqrt(torch.pow(anchors.squeeze(1) - positives.squeeze(1), 2).sum(1))
+		# N x N - 1
+		anch_neg_l2 = torch.sqrt(torch.pow(anchors - negatives, 2).sum(2))
+
 		# import pdb; pdb.set_trace()
-		anch_neg_pos = torch.log(1 + anch_neg_pos.sum(dim=1)) #N
-		# pdb.set_trace()
-		l2_loss = torch.sum(anchors ** 2 + positives ** 2) / anchors.shape[0]
 
-		# TODO: check if mean or sum?
-		total_loss = anch_neg_pos.mean() + self.l2_reg * l2_loss
+		# N x N-1 -> N -> 1
+		exp_dist = torch.exp(anch_pos_l2.unsqueeze(1) - anch_neg_l2).sum(1)
+		metric_loss = torch.log(1 + exp_dist).mean()
+
+		# pdb.set_trace()
+		l2_loss = (anchors.squeeze(1) ** 2 + positives.squeeze(1) ** 2).sum(1).mean()
+
+		total_loss = metric_loss + self.l2_reg * l2_loss
 
 		return total_loss

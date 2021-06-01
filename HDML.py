@@ -119,7 +119,6 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(False):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
-				embs_z_normalized = F.normalize(embs_z, p=2, dim=1)
 				return embs_z
 
 		# training baseline
@@ -127,7 +126,7 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(True):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
-				J_m = self.metric_loss_fn(F.normalize(embs_z, p=2, dim=1))
+				J_m = self.metric_loss_fn(embs_z)
 				self.optimizer_c.zero_grad()
 				J_m.backward()
 				self.optimizer_c.step()

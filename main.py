@@ -14,6 +14,7 @@ from trainer import run_experiment
 from datasets.cars196 import Cars196Dataset, Cars196TripletDataset, Cars196NPairDataset
 from datasets.samplers import BalancedBatchSampler
 
+# for npair, use 60 x 2 batch size, 0.25 * 3e-3 l2reg
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--experiment', action='store', type=str, required=True)
@@ -30,6 +31,7 @@ parser.add_argument('--start_step',      		action='store', type=int,   default=0
 parser.add_argument('--loss_fn',      	 		action='store', type=str,   default="npair")
 parser.add_argument('--num_classes_per_batch',  action='store', type=int,   default=20)
 parser.add_argument('--num_samples_per_class',  action='store', type=int,   default=2)
+parser.add_argument('--npair_l2reg',  			action='store', type=float, default=7e-4) #1/4*3e-3
 
 # Model Parameters
 parser.add_argument('--embedding_size', action='store', type=int,   default=128)
@@ -89,7 +91,7 @@ else:
 if args.loss_fn == "triplet":
 	loss_fn = TripletLoss(margin=0.1)
 elif args.loss_fn == "npair":
-	loss_fn = NPairLoss(l2_reg=0.01, num_samples_per_class=args.num_samples_per_class)
+	loss_fn = NPairLoss(l2_reg=args.npair_l2reg, num_samples_per_class=args.num_samples_per_class)
 else:
 	raise NotImplementedError
 
