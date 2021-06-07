@@ -73,7 +73,6 @@ def run_experiment(train_dataloader, test_dataloader, network, writer, load_dict
 				j_avg, j_g = None, None
 
 			step_losses = network(ims, labels, j_avg, j_g)
-			# import pdb; pdb.set_trace()
 
 			for i, k in enumerate(J_dict): 
 				J[i].update(step_losses[k], n_samples)
