@@ -46,6 +46,7 @@ class TripletPulling(Pulling):
 
 
 class NPairPulling(Pulling):
+	# TODO
 	def __init__(self, alpha, embedding_size, num_samples_per_class):
 		super(NPairPulling, self).__init__(alpha, embedding_size)
 		self.num_samples_per_class = num_samples_per_class
@@ -158,7 +159,7 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(True):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
-				J_m = self.metric_loss_fn(embs_z)
+				J_m = self.metric_loss_fn(embs_z, labels)
 				self.optimizer_c.zero_grad()
 				J_m.backward()
 				self.optimizer_c.step()

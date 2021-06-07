@@ -47,34 +47,37 @@ class TripletLoss(nn.Module):
 		# TODO: should we do mean?
 		return losses.sum()
 
+def cross_entropy(logits, target, size_average=True):
+	if size_average:
+		return torch.mean(torch.sum(- target * F.log_softmax(logits, -1), -1))
+	else:
+		return torch.sum(torch.sum(- target * F.log_softmax(logits, -1), -1))
+
 
 class NPairLoss(nn.Module):
-	def __init__(self, l2_reg, num_samples_per_class):
+	"""the multi-class n-pair loss"""
+	def __init__(self, l2_reg=0.02):
 		super(NPairLoss, self).__init__()
-		self.num_samples_per_class = num_samples_per_class
 		self.l2_reg = l2_reg
 
-	def forward(self, x):
-		# x is of size NM x D, M=2 default
-		# N x 1 x D, N x 1 x D, N x N-1 x D
-		anchors, positives, negatives = generate_tuples_npair(x, self.num_samples_per_class)
+	def forward(self, embs, target):
 
-		# N
-		anch_pos_l2 = torch.sqrt(torch.pow(anchors.squeeze(1) - positives.squeeze(1), 2).sum(1))
-		# N x N - 1
-		anch_neg_l2 = torch.sqrt(torch.pow(anchors - negatives, 2).sum(2))
+		anchor, positive = torch.chunk(embs, 2, dim=1)
 
-		# import pdb; pdb.set_trace()
+		batch_size = anchor.size(0)
+		target = target.view(target.size(0), 1)
 
-		# N x N-1 -> N -> 1
-		exp_dist = torch.exp(anch_pos_l2.unsqueeze(1) - anch_neg_l2).sum(1)
-		metric_loss = torch.log(1 + exp_dist).mean()
+		target = (target == torch.transpose(target, 0, 1)).float()
+		target = target / torch.sum(target, dim=1, keepdim=True).float()
 
-		# pdb.set_trace()
-		l2_loss = (anchors.squeeze(1) ** 2 + positives.squeeze(1) ** 2).sum(1).mean()
+		logit = torch.matmul(anchor, torch.transpose(positive, 0, 1))
+		loss_ce = cross_entropy(logit, target)
+		l2_loss = torch.sum(anchor**2) / batch_size + torch.sum(positive**2) / batch_size
 
-		total_loss = metric_loss + self.l2_reg * l2_loss
+		loss = loss_ce + self.l2_reg*l2_loss*0.25
+		print(loss.item(), loss_ce.item(), l2_loss.item())
 
-		# print(metric_loss, l2_loss, total_loss)
+		return loss
 
-		return total_loss
+
+# TODO npairforpulling

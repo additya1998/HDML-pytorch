@@ -78,6 +78,7 @@ if args.loss_fn == "triplet":
 	test_dataset = Cars196TripletDataset('datasets', 'test', args.image_size)
 	test_dataloader = DataLoader(test_dataset, batch_size=args.test_batch_size, shuffle=False)
 elif args.loss_fn == "npair":
+	assert args.num_samples_per_class == 2
 	train_dataset = Cars196NPairDataset('datasets', 'train', args.image_size)
 	train_sampler = BalancedBatchSampler(train_dataset.df.label, args.num_classes_per_batch, args.num_samples_per_class)
 	train_dataloader = DataLoader(train_dataset, batch_sampler=train_sampler, num_workers=args.num_workers)
@@ -91,7 +92,7 @@ else:
 if args.loss_fn == "triplet":
 	loss_fn = TripletLoss(margin=0.1)
 elif args.loss_fn == "npair":
-	loss_fn = NPairLoss(l2_reg=args.npair_l2reg, num_samples_per_class=args.num_samples_per_class)
+	loss_fn = NPairLoss(l2_reg=args.npair_l2reg)
 else:
 	raise NotImplementedError
 
