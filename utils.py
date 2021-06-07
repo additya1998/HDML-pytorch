@@ -75,16 +75,5 @@ def compute_recall_at_K(D, K, class_ids, num):
     return recall
 
 
-class TripletLoss(nn.Module):
-	def __init__(self, margin=0.1):
-		super(TripletLoss, self).__init__()
-		self.margin = margin
-
-	def forward(self, x):
-		anchor, positive, negative = torch.chunk(x, 3, dim=0)
-		dp = torch.sum(torch.square(anchor - positive), axis=1)
-		dn = torch.sum(torch.square(anchor - negative), axis=1)
-		losses = F.relu(dp - dn + self.margin)
-		return losses.sum()
 
 

@@ -56,27 +56,43 @@ def run_experiment(train_dataloader, test_dataloader, network, writer, load_dict
 
 			if step >= args.batch_per_epoch: break
 
-			iA, lA, iP, lP, iN, lN = data
-			ims, labels = torch.cat((iA, iP, iN), axis=0), torch.cat((lA, lP, lN))
+			if args.loss_fn == "triplet":
+				iA, lA, iP, lP, iN, lN = data
+				ims, labels = torch.cat((iA, iP, iN), axis=0), torch.cat((lA, lP, lN))
+				n_samples = iA.shape[0]
+			else:
+				ims, labels = data
+				n_samples = ims.shape[0]
+
 			ims, labels = ims.to(args.device), labels.to(args.device)
-			n_samples = iA.shape[0]
+			
 
 			if args.apply_HDML:
 				j_avg, j_g = J[0].avg, J[4].avg
-			else: j_avg, j_g = None, None
+			else: 
+				j_avg, j_g = None, None
 
 			step_losses = network(ims, labels, j_avg, j_g)
-			for i, k in enumerate(J_dict): J[i].update(step_losses[k], n_samples)
+
+			for i, k in enumerate(J_dict): 
+				J[i].update(step_losses[k], n_samples)
 
 			t_steps = t_steps + 1
 
-		for j in J: j.reset()
-		for i, k in enumerate(J_dict): writer.add_scalar('training/' + k, J[i].avg, t_steps)
-		for i, k in enumerate(J_dict): print("{}: {:.3f}".format(k, J[i].avg), end='  ')
+		for j in J: 
+			j.reset()
+
+		for i, k in enumerate(J_dict): 
+			writer.add_scalar('training/' + k, J[i].avg, t_steps)
+
+		for i, k in enumerate(J_dict): 
+			print("{}: {:.3f}".format(k, J[i].avg), end='  ')
 		print('')
 
 		epoch_losses = []
-		for j in J: epoch_losses.append(j.avg)
+		for j in J: 
+			epoch_losses.append(j.avg)
+			
 		epoch_losses = np.array(epoch_losses)
 		losses = np.vstack((losses, epoch_losses))
 
