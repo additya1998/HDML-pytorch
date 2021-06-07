@@ -5,7 +5,6 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
-from losses import generate_tuples_npair
 
 
 def glorot_uniform_initializer(m):
@@ -14,7 +13,7 @@ def glorot_uniform_initializer(m):
 		m.bias.data.fill_(0.0)
 
 def distance(embsA, embsB):
-	return torch.sqrt(torch.sum(torch.square(embsA - embsB), axis=1))
+	return torch.sqrt(torch.sum(torch.square(embsA - embsB), axis=1, keepdim=False))
 
 class Pulling:
 
@@ -46,30 +45,40 @@ class TripletPulling(Pulling):
 
 
 class NPairPulling(Pulling):
-	# TODO
 	def __init__(self, alpha, embedding_size, num_samples_per_class):
 		super(NPairPulling, self).__init__(alpha, embedding_size)
 		self.num_samples_per_class = num_samples_per_class
 
 	def transform(self, embs, j):
-		embs_a, embs_p, embs_n = generate_tuples_npair(embs, self.num_samples_per_class)
+		twoN, emb_size = embs.shape
+		embs = embs.view(int(twoN/2), 2, emb_size)
+		
+		anchor, positive = torch.chunk(embs, 2, dim=1)
+		negative = positive
+		N, _, emb_size = anchor.shape
 
-		# N x 1
-		dp = torch.sqrt(torch.pow(embs_a.squeeze(1) - embs_p.squeeze(1), 2).sum(1)).unsqueeze(1)
-		# N x N - 1
-		dn = torch.sqrt(torch.pow(embs_a - embs_n, 2).sum(2))
+		anc_tile = anchor.squeeze(1).repeat(1, N).reshape(-1, emb_size)
+		pos_tile = positive.squeeze(1).repeat(1, N).reshape(-1, emb_size)
+		neg_tile = negative.squeeze(1).repeat(N, 1)
 
-		r = ((dp + (dn - dp) * np.exp(-self.alpha / j)) / dn).unsqueeze(-1).repeat(1, 1, self.embedding_size)
-		embs_nn = embs_a + torch.mul((embs_n - embs_a), r)
+		dp = distance(anc_tile, pos_tile) #N
+		dn = distance(anc_tile, neg_tile) #N
+
+		r = ((dp + (dn - dp) * np.exp(-self.alpha / j)) / dn).unsqueeze(-1).repeat(1, self.embedding_size)
+
+		nn_tile = anc_tile + torch.mul((neg_tile - anc_tile), r)
 		mask = torch.ge(dp, dn)
 		mask_inverse = ~mask
+		mask = mask.float().unsqueeze(-1).repeat(1, self.embedding_size)
+		mask_inverse = mask_inverse.float().unsqueeze(-1).repeat(1, self.embedding_size)
+		neg_ret = torch.mul(neg_tile, mask) + torch.mul(nn_tile, mask_inverse)
 
-		mask = mask.float().unsqueeze(-1).repeat(1, 1, self.embedding_size)
-		mask_inverse = mask_inverse.float().unsqueeze(-1).repeat(1, 1, self.embedding_size)
-		embs_n_ret = torch.mul(embs_n, mask) + torch.mul(embs_nn, mask_inverse)
+		out = torch.cat((anchor.squeeze(1), neg_ret), axis=0)
 
-		return embs_a, embs_p, embs_n_ret
+		# (20 + 20 x 20 , 128)
+		# import pdb; pdb.set_trace()
 
+		return out
 
 
 class HDML(nn.Module):
@@ -178,7 +187,7 @@ class HDML(nn.Module):
 				embs_y = self.backbone_network(x)
 				embs_z = self.yz_network(embs_y)
 				
-				J_m = self.metric_loss_fn(embs_z)
+				J_m = self.metric_loss_fn(embs_z, labels)
 				J_m = J_m * np.exp(-self.beta / j_g)
 				self.optimizer_c.zero_grad()
 				J_m.backward()
@@ -228,7 +237,7 @@ class HDML(nn.Module):
 			with torch.set_grad_enabled(True):
 				# TODO: modify for npair, check for each a, p if you take all negs (not ment in paper)
 				embs_zg_hard = self.yz_network(embs_yg_hard)
-				J_synth = self.metric_loss_fn(embs_zg_hard)
+				J_synth = self.metric_loss_fn(embs_zg_hard, labels)
 				J_synth = (1 - np.exp(-self.beta / j_g)) * J_synth
 				J_synth.backward()
 				self.optimizer_c.step()
@@ -238,6 +247,118 @@ class HDML(nn.Module):
 			loss_dict = {'J_m': J_m.item(), 'J_synth': J_synth.item(), 'J_metric': J_metric.item(),
 					'J_g': J_g.item(), 'J_soft': J_soft.item(), 'J_recon': J_recon.item(),
 					'J_ce': J_ce.item(), 'J_wd': J_wd.item()}
+
+			self.scheduler_c.step()
+
+			return loss_dict
+
+
+
+class HDML_NPair(HDML):
+
+	def __init__(self, backbone_network, loss_fn, args):
+		super(HDML_NPair, self).__init__(backbone_network, loss_fn, args)
+
+	def forward(self, x, labels, j_avg=None, j_g=None):
+
+		n_samples = x.shape[0] // 2 # n_samples == n_classes
+
+		# testing
+		if not self.training:
+			with torch.set_grad_enabled(False):
+				embs_y = self.backbone_network(x)
+				embs_z = self.yz_network(embs_y)
+				return embs_z
+
+		# training baseline
+		labels_new = labels.view(n_samples, 2)[:, 0]
+		
+		if not self.apply_HDML:
+			with torch.set_grad_enabled(True):
+				embs_y = self.backbone_network(x)
+				embs_z = self.yz_network(embs_y)
+				J_m = self.metric_loss_fn(embs_z, labels_new)
+				self.optimizer_c.zero_grad()
+				J_m.backward()
+				self.optimizer_c.step()
+
+				J_wd = 0
+				for param in self.backbone_network.parameters(): J_wd = J_wd + torch.sum(param ** 2)
+				for param in self.yz_network.parameters(): J_wd = J_wd + torch.sum(param ** 2)
+				J_wd = J_wd * self.weight_decay
+
+			return {'J_m': J_m.item(), 'J_wd': J_wd.item()}
+
+		if self.apply_HDML:
+
+			# train backbone network + yz network using real samples: only compute loss
+			with torch.set_grad_enabled(True):
+				embs_y = self.backbone_network(x)
+				embs_z = self.yz_network(embs_y)
+				
+				J_m = self.metric_loss_fn(embs_z, labels_new)
+				J_m = J_m * np.exp(-self.beta / j_g)
+				self.optimizer_c.zero_grad()
+				J_m.backward()
+
+				J_wd = 0
+				for param in self.backbone_network.parameters(): J_wd = J_wd + torch.sum(param ** 2)
+				for param in self.yz_network.parameters(): J_wd = J_wd + torch.sum(param ** 2)
+				J_wd = J_wd * self.weight_decay
+
+			embs_y, embs_z = embs_y.detach(), embs_z.detach()
+
+			# train softmax classifier
+			with torch.set_grad_enabled(True):
+				ce_preds = self.softmax_classifier(embs_y)
+				J_ce = self.ce_loss_fn(ce_preds, labels)
+				self.optimizer_s.zero_grad()
+				J_ce.backward()
+				self.optimizer_s.step()
+
+			embs_z_hard = self.pulling.transform(embs_z, j_avg)
+
+			embs_z_total = torch.cat((embs_z, embs_z_hard), axis=0)
+
+			# train generator
+			with torch.set_grad_enabled(True):
+				embs_yg_total = self.generator(embs_z_total)
+				preds_yg_total = self.softmax_classifier(embs_yg_total)
+
+				labels_yg_total = torch.cat((labels, labels_new.repeat(n_samples + 1)))
+				J_soft = self.ce_loss_fn(preds_yg_total, labels_yg_total)
+				J_soft = self.softmax_factor * self.lmbda * J_soft
+				
+				embs_y_new = embs_yg_total[:n_samples*2, :]
+				embs_yg_hard = embs_yg_total[n_samples*2:, :]
+
+				J_recon = torch.sum(torch.square(embs_y_new - embs_y))
+				J_recon = (1 - self.lmbda) * J_recon
+
+				J_g = J_soft + J_recon
+				self.optimizer_g.zero_grad()
+				J_g.backward()
+				self.optimizer_g.step()
+
+			embs_yg_hard = embs_yg_hard.detach()
+
+			# import pdb; pdb.set_trace()
+
+			# train yz_network and (backbone + yz_network) optimizer step
+			with torch.set_grad_enabled(True):
+				embs_zg_hard = self.yz_network(embs_yg_hard)
+				J_synth = self.metric_loss_fn(embs_zg_hard, labels_new, hard_forward=True, n_samples=n_samples)
+				J_synth = (1 - np.exp(-self.beta / j_g)) * J_synth
+				J_synth.backward()
+				self.optimizer_c.step()
+
+			J_metric = J_m + J_synth
+
+			loss_dict = {'J_m': J_m.item(), 'J_synth': J_synth.item(), 'J_metric': J_metric.item(),
+					'J_g': J_g.item(), 'J_soft': J_soft.item(), 'J_recon': J_recon.item(),
+					'J_ce': J_ce.item(), 'J_wd': J_wd.item()}
+
+			print(loss_dict)
 
 			self.scheduler_c.step()
 

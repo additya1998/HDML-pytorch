@@ -7,7 +7,7 @@ import torch.nn as nn
 from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data import Dataset, DataLoader, RandomSampler
 
-from HDML import HDML
+from HDML import HDML, HDML_NPair
 from GoogLeNet import googlenet
 from losses import TripletLoss, NPairLoss
 from trainer import run_experiment
@@ -31,7 +31,7 @@ parser.add_argument('--start_step',      		action='store', type=int,   default=0
 parser.add_argument('--loss_fn',      	 		action='store', type=str,   default="npair")
 parser.add_argument('--num_classes_per_batch',  action='store', type=int,   default=20)
 parser.add_argument('--num_samples_per_class',  action='store', type=int,   default=2)
-parser.add_argument('--npair_l2reg',  			action='store', type=float, default=7e-4) #1/4*3e-3
+parser.add_argument('--npair_l2reg',  			action='store', type=float, default=3e-3) 
 
 # Model Parameters
 parser.add_argument('--embedding_size', action='store', type=int,   default=128)
@@ -88,16 +88,17 @@ elif args.loss_fn == "npair":
 else:
 	raise NotImplementedError
 
+backbone_network = googlenet(pretrained=True)
 
 if args.loss_fn == "triplet":
 	loss_fn = TripletLoss(margin=0.1)
+	network = HDML(backbone_network, loss_fn, args)
 elif args.loss_fn == "npair":
 	loss_fn = NPairLoss(l2_reg=args.npair_l2reg)
+	network = HDML_NPair(backbone_network, loss_fn, args)
 else:
 	raise NotImplementedError
 
-backbone_network = googlenet(pretrained=True)
-network = HDML(backbone_network, loss_fn, args)
 network = network.to(args.device)
 
 if args.saved_ckpt != None:
